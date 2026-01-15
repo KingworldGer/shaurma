@@ -71,7 +71,7 @@ header p{font-size:.9em;opacity:.9;}
 .marquee{
   display:inline-block;
   white-space:nowrap;
-  animation:marquee 25s linear infinite; /* плавная скорость */
+  animation:marquee 25s linear infinite; 
   font-weight:700;
 }
 @keyframes marquee{
@@ -90,6 +90,8 @@ header p{font-size:.9em;opacity:.9;}
   justify-content:center;
   gap:14px;
   padding:20px;
+  max-width:1200px; /* для ПК */
+  margin:0 auto;
 }
 .image-box{
   width:150px;
@@ -98,6 +100,7 @@ header p{font-size:.9em;opacity:.9;}
   border-radius:14px;
   overflow:hidden;
   transition:.3s;
+  flex: 0 0 auto;
 }
 .image-box:hover{transform:scale(1.05);}
 .image-box img{
@@ -110,17 +113,18 @@ header p{font-size:.9em;opacity:.9;}
 /* Мобильные устройства — две колонки */
 @media(max-width:768px){
   .image-container{
-    justify-content:center;
+    justify-content:space-around;
+    max-width:100%;
   }
   .image-box{
-    width:48%; /* две колонки */
+    flex: 0 0 48%; /* две колонки */
     height:120px;
     margin-bottom:12px;
   }
 }
 @media(max-width:480px){
   .image-box{
-    width:48%; /* две колонки даже на маленьких экранах */
+    flex: 0 0 48%;
     height:100px;
   }
 }
@@ -243,4 +247,5 @@ modal.onclick=()=>{
 
 </body>
 </html>
+
 
