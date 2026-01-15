@@ -71,7 +71,7 @@ header p{font-size:.9em;opacity:.9;}
 .marquee{
   display:inline-block;
   white-space:nowrap;
-  animation:marquee 25s linear infinite; /* скорость плавная */
+  animation:marquee 25s linear infinite; /* плавная скорость */
   font-weight:700;
 }
 @keyframes marquee{
@@ -110,11 +110,12 @@ header p{font-size:.9em;opacity:.9;}
 /* Мобильные устройства — две колонки */
 @media(max-width:768px){
   .image-container{
-    justify-content:space-around;
+    justify-content:center;
   }
   .image-box{
-    width:45%; /* две колонки */
+    width:48%; /* две колонки */
     height:120px;
+    margin-bottom:12px;
   }
 }
 @media(max-width:480px){
@@ -242,3 +243,4 @@ modal.onclick=()=>{
 
 </body>
 </html>
+
