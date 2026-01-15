@@ -4,46 +4,92 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Магазин Гамбургеров — Ручей</title>
-<meta name="description" content="Гамбургеры, Шаурма, Куры гриль. Быстро, вкусно, с доставкой.">
+<meta name="description" content="Гамбургеры, Шаверма, Гриль, Кофе. Ручей.">
+
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+
 <style>
-:root {
+:root{
   --accent:#ff5722;
-  --dark:#1b1b1b;
-  --card-bg: rgba(255,255,255,0.05);
-  --rounded:18px;
-  font-family: 'Inter', sans-serif;
+  --bg:#111;
+  --card:rgba(255,255,255,.05);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{
+  background:var(--bg);
+  color:#fff;
+  font-family:Inter,sans-serif;
+  overflow-x:hidden;
 }
 
-*{margin:0;padding:0;box-sizing:border-box;}
-html,body{height:100%;overflow-x:hidden;scroll-behavior:smooth;background:#111;color:#fff;}
-body{background:#111;}
-
-/* Параллакс фон */
+/* Параллакс */
 .parallax{
-  position:relative;
-  width:100%;
   height:300px;
-  background: url('1.jpg') center center/cover no-repeat fixed;
+  background:url('1.jpg') center/cover fixed no-repeat;
+  opacity:0;
+  animation:fadeIn 1.5s forwards;
 }
 @media(max-width:768px){
-  .parallax{background-attachment:scroll;height:200px;}
+  .parallax{height:200px;background-attachment:scroll}
 }
 
 /* Хедер */
 header{
-  position:sticky;top:0;padding:16px;background:rgba(0,0,0,0.6);backdrop-filter:blur(6px);text-align:center;z-index:1000;border-radius:var(--rounded);
+  position:sticky;
+  top:0;
+  background:rgba(0,0,0,.6);
+  backdrop-filter:blur(6px);
+  padding:16px;
+  text-align:center;
+  z-index:1000;
+  opacity:0;
+  animation:fadeIn 1.5s 0.5s forwards;
 }
-header h1{font-size:2em;margin-bottom:4px;}
-header p{font-size:0.9em;opacity:0.9;}
+header h1{font-size:2em}
+header p{font-size:.9em;opacity:.9}
+
+/* МЕНЮ */
+.menu-link{
+  display:inline-block;
+  margin-top:6px;
+  font-size:.85em;
+  letter-spacing:.08em;
+  opacity:.6;
+  cursor:pointer;
+  transition:.25s;
+}
+.menu-link:hover{
+  opacity:1;
+  color:var(--accent);
+  text-shadow:0 0 6px rgba(255,87,34,.6);
+}
 
 /* Бегущая строка */
-.marquee-wrap{overflow:hidden;border-radius:12px;padding:10px;margin:16px 0;background:rgba(255,255,255,0.05);}
-.marquee{display:inline-block;white-space:nowrap;animation:marquee 20s linear infinite;font-weight:700;}
-@keyframes marquee{0%{transform:translateX(100%);}100%{transform:translateX(-100%);}}
-.marquee span{margin-right:40px;color:var(--accent);}
+.marquee-wrap{
+  overflow:hidden;
+  margin:16px 0;
+  padding:10px;
+  background:var(--card);
+  border-radius:12px;
+  opacity:0;
+  animation:fadeIn 1.5s 1s forwards;
+}
+.marquee{
+  display:inline-block;
+  white-space:nowrap;
+  animation:marquee 15s linear infinite;
+  font-weight:700;
+}
+@keyframes marquee{
+  from{transform:translateX(100%)}
+  to{transform:translateX(-100%)}
+}
+.marquee span{
+  margin-right:40px;
+  color:var(--accent);
+}
 
-/* Галерея карточек */
+/* Галерея */
 .image-container{
   display:flex;
   flex-wrap:wrap;
@@ -52,134 +98,144 @@ header p{font-size:0.9em;opacity:0.9;}
   padding:20px;
 }
 .image-box{
-  background:var(--card-bg);
-  border-radius:14px;
-  overflow:hidden;
   width:150px;
   height:150px;
-  position:relative;
-  transition: transform 0.3s, box-shadow 0.3s;
+  background:var(--card);
+  border-radius:14px;
+  overflow:hidden;
+  transition:.3s;
 }
-.image-box:hover{transform:scale(1.05) rotate(-1deg);box-shadow:0 10px 30px rgba(0,0,0,0.5);}
-.image-box img{width:100%;height:100%;object-fit:cover;}
-.product-info{text-align:center;margin-top:6px;font-size:0.85em;}
-.product-info h2{font-size:1em;margin-bottom:4px;}
-.product-info .price{color:var(--accent);font-weight:700;margin-bottom:4px;}
-.cart-button{
-  padding:6px 12px;border:none;border-radius:8px;background:var(--accent);color:#fff;cursor:pointer;transition:all 0.3s;font-size:0.8em;
+.image-box:hover{transform:scale(1.05)}
+.image-box img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  cursor:pointer;
 }
-.cart-button:hover{background:#e64a19;transform:scale(1.05);}
 
-/* Информация о магазине */
+/* Информация */
 .info-section{
-  background:rgba(0,0,0,0.6);padding:20px;border-radius:18px;margin:20px auto;
-  max-width:650px;text-align:center;
+  max-width:650px;
+  margin:20px auto;
+  padding:20px;
+  background:rgba(0,0,0,.6);
+  border-radius:18px;
+  text-align:center;
 }
-.info-section h2{color:var(--accent);margin-bottom:10px;}
-.info-section p{margin:6px 0;font-size:0.9em;line-height:1.3;}
+.info-section h2{
+  color:var(--accent);
+  margin-bottom:10px;
+}
+.info-section p{
+  margin:6px 0;
+  font-size:.9em;
+  line-height:1.4;
+}
 
-/* Плавающая кнопка звонка */
+/* Звонок */
 .floating-call{
-  position:fixed;bottom:20px;right:20px;
-  background:var(--accent);color:#fff;padding:14px 18px;border-radius:50px;font-weight:700;box-shadow:0 6px 18px rgba(255,87,34,0.5);z-index:1000;text-decoration:none;
-  transition:all 0.3s;font-size:0.9em;
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:var(--accent);
+  color:#fff;
+  padding:14px 18px;
+  border-radius:40px;
+  text-decoration:none;
+  font-weight:700;
 }
-.floating-call:hover{transform:scale(1.1);}
 
-/* Модальное окно */
-.modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.85);z-index:2000;}
-.modal.open{display:flex;}
-.modal img{max-width:95%;max-height:92%;border-radius:12px;}
-
-/* Адаптация */
-@media(max-width:768px){
-  .image-box{width:120px;height:120px;}
-  .product-info h2{font-size:0.9em;}
-  .product-info .price{font-size:0.8em;}
+/* Модалка */
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.85);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:3000;
 }
-@media(max-width:480px){
-  .image-box{width:100px;height:100px;}
-  .product-info h2{font-size:0.8em;}
-  .product-info .price{font-size:0.7em;}
-  .info-section{padding:14px;}
-  header h1{font-size:1.4em;}
+.modal.open{display:flex}
+.modal img{
+  max-width:95%;
+  max-height:95%;
+  border-radius:12px;
+}
+
+/* Fade-in анимация */
+@keyframes fadeIn{
+  to{opacity:1}
 }
 </style>
 </head>
+
 <body>
 
 <div class="parallax"></div>
 
 <header>
-<h1>Добро пожаловать в магазин у Мангала!</h1>
-<p>Найдите любимое блюдо и закажите прямо сейчас!</p>
-<div class="marquee-wrap"><div class="marquee">
-<span>Гамбургеры — 200 руб.</span>
-<span>Хот Дог — 150 руб.</span>
-<span>Шаурма — 250 руб.</span>
-<span>Кофе — от 50 руб.</span>
-<span>Картошка Фри — 100 руб.</span>
-<span>Наггетсы — 70 руб.</span>
-<span>Соусы — 30 руб.</span>
-<span>Цыплёнок гриль — 550 руб.</span>
-</div></div>
+  <h1>Добро пожаловать в магазин у Мангала!</h1>
+  <p>Найдите любимое блюдо и закажите прямо сейчас</p>
+
+  <div class="menu-link" onclick="openMenu()">МЕНЮ</div>
+
+  <div class="marquee-wrap">
+    <div class="marquee">
+      <span>ШАВЕРМА</span>
+      <span>БУРГЕРЫ</span>
+      <span>ХОТ-ДОГИ</span>
+      <span>КАРТОШКА ФРИ</span>
+      <span>НАГГЕТСЫ</span>
+      <span>СОУСЫ</span>
+      <span>ГРИЛЬ</span>
+      <span>КОФЕ</span>
+      <span>ЛАТТЕ</span>
+    </div>
+  </div>
 </header>
 
-<div class="image-container" id="gallery">
-<!-- JS подгрузит 42 изображения -->
-</div>
+<div class="image-container" id="gallery"></div>
 
 <div class="info-section">
-<h2>Информация о магазине</h2>
-<p><strong>Телефон:</strong> 8 (981) 178-64-44</p>
-<p><strong>Адрес:</strong> ул. Центральная, 1, Ковровский район, населенный пункт Ручей</p>
-<p><strong>Email:</strong> kingworldger@gmail.com</p>
-<p><strong>Доставка:</strong> Доставка из деревни Ручей 500 рублей</p>
+  <h2>Информация о магазине</h2>
+  <p><strong>Телефон:</strong> 8 (981) 178-64-44</p>
+  <p><strong>Адрес:</strong> ул. Центральная, 1, Ковровский район, населенный пункт Ручей</p>
+  <p><strong>Email:</strong> kingworldger@gmail.com</p>
+  <p><strong>Доставка:</strong> доставка из деревни Ручей — 500 рублей</p>
 </div>
 
 <a href="tel:+79811786444" class="floating-call">Позвонить</a>
 
-<div class="modal" id="modal"><img id="modalImg" src=""></div>
+<div class="modal" id="modal">
+  <img id="modalImg">
+</div>
 
 <script>
-// Подгрузка всех 42 изображений
+/* Галерея 1–42 */
 const gallery=document.getElementById('gallery');
 for(let i=1;i<=42;i++){
-  let box=document.createElement('div');
+  const box=document.createElement('div');
   box.className='image-box';
-  let img=document.createElement('img');
-  img.src=`${i}.jpg`;
-  img.alt=`Продукт ${i}`;
+  const img=document.createElement('img');
+  img.src=i+'.jpg';
+  img.alt='Продукт '+i;
   img.onclick=()=>openModal(img.src);
-  let info=document.createElement('div');
-  info.className='product-info';
-  let title=document.createElement('h2');
-  title.textContent=`Продукт ${i}`;
-  let price=document.createElement('div');
-  price.className='price';
-  price.textContent=`${50+i*5} руб.`; // пример цены
-  let btn=document.createElement('button');
-  btn.className='cart-button';
-  btn.textContent='Купить';
-  info.appendChild(title);
-  info.appendChild(price);
-  info.appendChild(btn);
   box.appendChild(img);
-  box.appendChild(info);
   gallery.appendChild(box);
 }
 
-// Модальное окно
+/* Модалки */
 function openModal(src){
-  const modal=document.getElementById('modal');
-  const modalImg=document.getElementById('modalImg');
   modalImg.src=src;
   modal.classList.add('open');
 }
-document.getElementById('modal').addEventListener('click',function(){
-  this.classList.remove('open');
-  document.getElementById('modalImg').src='';
-});
+function openMenu(){
+  openModal('menu.jpg');
+}
+modal.onclick=()=>{
+  modal.classList.remove('open');
+  modalImg.src='';
+};
 </script>
 
 </body>
