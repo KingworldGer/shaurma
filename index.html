@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Магазин Гамбургеров — Ручей</title>
 <meta name="description" content="Гамбургеры, Шаверма, Гриль, Кофе. Ручей.">
-
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
 
 <style>
@@ -14,7 +13,8 @@
   --bg:#111;
   --card:rgba(255,255,255,.05);
 }
-*{margin:0;padding:0;box-sizing:border-box}
+
+*{margin:0;padding:0;box-sizing:border-box;}
 html,body{
   background:var(--bg);
   color:#fff;
@@ -26,11 +26,9 @@ html,body{
 .parallax{
   height:300px;
   background:url('1.jpg') center/cover fixed no-repeat;
-  opacity:0;
-  animation:fadeIn 1.5s forwards;
 }
 @media(max-width:768px){
-  .parallax{height:200px;background-attachment:scroll}
+  .parallax{height:200px;background-attachment:scroll;}
 }
 
 /* Хедер */
@@ -42,11 +40,9 @@ header{
   padding:16px;
   text-align:center;
   z-index:1000;
-  opacity:0;
-  animation:fadeIn 1.5s 0.5s forwards;
 }
-header h1{font-size:2em}
-header p{font-size:.9em;opacity:.9}
+header h1{font-size:2em;}
+header p{font-size:.9em;opacity:.9;}
 
 /* МЕНЮ */
 .menu-link{
@@ -71,13 +67,11 @@ header p{font-size:.9em;opacity:.9}
   padding:10px;
   background:var(--card);
   border-radius:12px;
-  opacity:0;
-  animation:fadeIn 1.5s 1s forwards;
 }
 .marquee{
   display:inline-block;
   white-space:nowrap;
-  animation:marquee 15s linear infinite;
+  animation:marquee 25s linear infinite; /* скорость плавная */
   font-weight:700;
 }
 @keyframes marquee{
@@ -105,12 +99,29 @@ header p{font-size:.9em;opacity:.9}
   overflow:hidden;
   transition:.3s;
 }
-.image-box:hover{transform:scale(1.05)}
+.image-box:hover{transform:scale(1.05);}
 .image-box img{
   width:100%;
   height:100%;
   object-fit:cover;
   cursor:pointer;
+}
+
+/* Мобильные устройства — две колонки */
+@media(max-width:768px){
+  .image-container{
+    justify-content:space-around;
+  }
+  .image-box{
+    width:45%; /* две колонки */
+    height:120px;
+  }
+}
+@media(max-width:480px){
+  .image-box{
+    width:48%; /* две колонки даже на маленьких экранах */
+    height:100px;
+  }
 }
 
 /* Информация */
@@ -155,16 +166,11 @@ header p{font-size:.9em;opacity:.9}
   justify-content:center;
   z-index:3000;
 }
-.modal.open{display:flex}
+.modal.open{display:flex;}
 .modal img{
   max-width:95%;
   max-height:95%;
   border-radius:12px;
-}
-
-/* Fade-in анимация */
-@keyframes fadeIn{
-  to{opacity:1}
 }
 </style>
 </head>
@@ -181,15 +187,7 @@ header p{font-size:.9em;opacity:.9}
 
   <div class="marquee-wrap">
     <div class="marquee">
-      <span>ШАВЕРМА</span>
-      <span>БУРГЕРЫ</span>
-      <span>ХОТ-ДОГИ</span>
-      <span>КАРТОШКА ФРИ</span>
-      <span>НАГГЕТСЫ</span>
-      <span>СОУСЫ</span>
-      <span>ГРИЛЬ</span>
-      <span>КОФЕ</span>
-      <span>ЛАТТЕ</span>
+      <span>ШАВЕРМА • БУРГЕРЫ • КУРИНЫЙ • СВИНАЯ • БОЛЬШЕ МЯСА • БОГАТЫРЬ • ВЕГАН • ДОБАВКИ • СОУСЫ • ГРИЛЬ • КОФЕ • ХОТ-ДОГИ • КАРТОШКА ФРИ • НАГГЕТСЫ</span>
     </div>
   </div>
 </header>
@@ -226,12 +224,16 @@ for(let i=1;i<=42;i++){
 
 /* Модалки */
 function openModal(src){
+  const modal=document.getElementById('modal');
+  const modalImg=document.getElementById('modalImg');
   modalImg.src=src;
   modal.classList.add('open');
 }
 function openMenu(){
   openModal('menu.jpg');
 }
+const modal=document.getElementById('modal');
+const modalImg=document.getElementById('modalImg');
 modal.onclick=()=>{
   modal.classList.remove('open');
   modalImg.src='';
